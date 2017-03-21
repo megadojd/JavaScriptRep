@@ -269,7 +269,7 @@ function AbcCount (s) {
         list.add(new Value(arr[i]));
 
         //let t=stack.toString().replace(/,/g, "");
-        let t=list.toString().replace(/\n/g, "");
+        let t=list.toString().replace(/[\n]/g, "");
         let re = new RegExp("^(?:" + t + ")+$");
         if (re.test(s)) {
             let n=s.split(t);
