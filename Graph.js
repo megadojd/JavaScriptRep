@@ -7,6 +7,8 @@ let Graph=function() {
     this.nodes=[];
     this.addNode=function(value) {
 
+    this.createdNodes=new Map();
+
 let node = this.find(value);
 if (node) {
     //node.lines.push();
@@ -53,7 +55,7 @@ if (node) {
     this.DFS_helper=function(start_node) {
         if (start_node.lines) {
         while (start_node.lines.length>0) {
-            let next_element=start_node.lines[0];//.shift();
+            let next_element=start_node.lines.shift();
             console.log(next_element[0].value);
             this.DFS_helper(next_element[0]);
         }
