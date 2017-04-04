@@ -1,6 +1,8 @@
 class Node {
 constructor (name) {
         this.name = name;
+		this.value;
+		this.visited=false;
         this.children = [];
 	}
 }
@@ -8,7 +10,7 @@ constructor (name) {
 
 class Graf {
     constructor (edges){
-    this.nodes = [];
+    	this.nodes = [];
 		let createdNodes = new Map();
         for (let edge of edges) {
             let node1, node2;
@@ -35,7 +37,7 @@ class Graf {
 		}	
 	}
 
-	dfs (root, flag) {
+	dfs (root) {
         if (root == null) return;
 		console.log(root.name);
 		root.visited = true;
@@ -46,24 +48,30 @@ class Graf {
 		}
     }
 
-	bfs (root) {
-		if (root == null) return;
-		console.log(root.name);
-
-		let queue=[];
-
-		for(let child of root.children){
-			console.log(child.name);
-			queue.push(child);
-		}
-		for (let child in queue) {
-			this.bfs(child);
-		}
-
+bfs (root) {
+	if (!root) {
+		return undefined;
 	}
+	let queue=[];
+	queue.push(root);
+	while (queue.length>0) {
+		let current=queue.shift();
+		console.log(current.name);
+		for (let node of current.children) {
+			if (!node.visited) {
+				node.visited=true;
+				queue.push(node);
+			}
+		}
+	}
+
+}
 
 
 }
+
+
+
 
 let graf = new Graf ([[0,1],[0,4],[0,5],[1,3],[1,4],[3,4],[3,2],[2,1]]);
 graf.bfs(graf.nodes[0]);
