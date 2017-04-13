@@ -63,14 +63,39 @@ bfs (root) {
 				queue.push(node);
 			}
 		}
+	} 
+
+}
+
+
+bfs_min (root) {
+	if (!root) {
+		return undefined;
 	}
+	let queue=[];
+	queue.push(root);
+	while (queue.length>0) {
+		let current=queue.shift();
+		console.log(current.name);
+		let min=current.children[0].value;
+		let min_node=current.children[0];
+		for (let node of current.children) {
+			if (!node.visited) {
+
+if (node.value<min) {
+	min=node.value;
+	min_node=node;
+}
+
+				node.visited=true;
+				queue.push(node);
+			}
+		}
+	} 
 
 }
 
-
 }
-
-
 
 
 let graf = new Graf ([[0,1],[0,4],[0,5],[1,3],[1,4],[3,4],[3,2],[2,1]]);
